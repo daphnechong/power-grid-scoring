@@ -174,7 +174,9 @@
 	function buyPowerPlant() {
 		console.log('buying power plant')
 		$('input#powerplantcost').val(function(index, value) {
-			if (value != NaN) {
+			console.log(index + ' ' + value)
+
+			if (value !== '') {
 				addToTotal(-parseInt(value));
 			}
 		});
@@ -183,14 +185,15 @@
 	function addConnection() {
 		console.log('adding connection')
 		$('input#connectioncost').val(function(index, value) {
-			console.log(index, value)
-			if (value != NaN) {
+			console.log(index + ' ' + value)
+			if (value !== '') {
 				addToTotal(-parseInt(value));
 			}
 		});
 	}
 
 	function powerCities(count) {
+		console.log('Powering cities: ' + count)
 		switch(count) {
 			case 0: addToTotal(10); break;
 			case 1: addToTotal(22); break;
