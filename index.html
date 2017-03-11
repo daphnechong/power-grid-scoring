@@ -23,11 +23,11 @@
 
 			<div class="panel panel-default" id="phase2">
 			  <div class="panel-heading" role="tab" id="headingPhase2">
-			    <a role="button panel-title" data-toggle="collapse" data-parent="#accordion" href="#phase2collapse" aria-expanded="true" aria-controls="phase2collapse"><h3>Phase 2: Auction Power Plants</h3></a>
+			    <a class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#phase2collapse" aria-expanded="true" aria-controls="phase2collapse"><h3>Phase 2: Auction Power Plants</h3></a>
 			  </div>
 			  <div id="phase2collapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPhase2">
 				  <div class="panel-body">
-				    <form class="form-inline">
+				    <div class="form-inline">
 						  <div class="form-group">
 						    <label class="sr-only" for="powerplantcost">Power plant cost</label>
 						    <div class="input-group input-group-lg">
@@ -36,9 +36,9 @@
 						    </div>
 						  </div>
 						  <div style="margin-right:0px" class="navbar-right">
-							  <button type="submit" class="btn btn-lg btn-default">Done</button>
+							  <button class="btn btn-lg btn-default" onClick="buyPowerPlant();showPanel('phase3collapse');">Done</button>
 							</div>
-						</form>
+						</div>
 				  </div>
 				</div>
 			</div>
@@ -51,23 +51,25 @@
 			  <div id="phase3collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase3">
 				  <div class="panel-body">
 					  <div class="btn-group" role="group">
-						  <button type="button" class="btn btn-lg btn-default">1</button>
-						  <button type="button" class="btn btn-lg btn-default">2</button>
-						  <button type="button" class="btn btn-lg btn-default">3</button>
-						  <button type="button" class="btn btn-lg btn-default">4</button>
-						  <button type="button" class="btn btn-lg btn-default">5</button>
-						  <button type="button" class="btn btn-lg btn-default">6</button>
-						  <button type="button" class="btn btn-lg btn-default">7</button>
-						  <button type="button" class="btn btn-lg btn-default">8</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-1)">1</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-2)">2</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-3)">3</button>
+						  <button type="button" class="btn btn-lg btn-default"
+						   onClick="addToTotal(-4)">4</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-5)">5</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-6)">6</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-7)">7</button>
+						  <button type="button" class="btn btn-lg btn-default"
+						   onClick="addToTotal(-8)">8</button>
 						 </div>
 						 <div class="btn-group" role="group">
-						  <button type="button" class="btn btn-lg btn-default">10</button>
-						  <button type="button" class="btn btn-lg btn-default">12</button>
-						  <button type="button" class="btn btn-lg btn-default">14</button>
-						  <button type="button" class="btn btn-lg btn-default">16</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-10)">10</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-12)">12</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-14)">14</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-16)">16</button>
 						</div>
 
-						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" >Done</button>
+						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase4collapse')">Done</button>
 					</div>
 				</div>
 			</div>
@@ -79,28 +81,76 @@
 			  </div>
 			  <div id="phase4collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase4">
 				  <div class="panel-body">
-						<form class="form-inline">
+						<div class="form-inline">
 						  <div class="form-group">
 						  	<div class="btn-group" role="group">
-								  <button type="button" class="btn btn-lg btn-default">10</button>
-								  <button type="button" class="btn btn-lg btn-default">15</button>
-								  <button type="button" class="btn btn-lg btn-default">20</button>
+								  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-10)">10</button>
+								  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-15)">15</button>
+								  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-20)">20</button>
 
 								</div>
-						    <label class="sr-only" for="powerplantcost">Connection cost</label>
+						    <label class="sr-only" for="connectioncost">Connection cost</label>
 						    <div class="input-group input-group-lg">
 						      <div class="input-group-addon">$</div>
-						      <input type="text" class="form-control" id="powerplantcost" placeholder="Connection cost">
+						      <input type="text" class="form-control" id="connectioncost" placeholder="Connection cost">
 						    </div>
 						  </div>
-						  <button type="submit" class="btn btn-lg btn-default">Add</button>
-						</form>
+						  <button class="btn btn-lg btn-default" onClick="addConnection();">Add</button>
+						</div>
 
-						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" >Done</button>
+						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase5collapse')">Done</button>
+				</div>
+			</div>
+	  </div>
+
+	  <div class="panel panel-default" id="phase5">
+			  <div class="panel-heading" role="tab" id="headingPhase5">
+			    	<a class="collapsed panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#phase5collapse" aria-expanded="false" aria-controls="phase5collapse"><h3>Phase 5: Bureaucracy</h3></a>
+			  </div>
+			  <div id="phase5collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase5">
+				  <div class="panel-body">
+ 						<div class="btn-group" role="group">
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(0)">0</button>
+
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(1)">1</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(2)">2</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(3)">3</button>
+						  <button type="button" class="btn btn-lg btn-default"
+						   onClick="powerCities(4)">4</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(5)">5</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="powerCities(6)">6</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="powerCities(7)">7</button>
+						  <button type="button" class="btn btn-lg btn-default"
+						   onClick="powerCities(8)">8</button>
+						 </div>
+						 <div class="btn-group" role="group">
+						   <button type="button" class="btn btn-lg btn-default" onClick="powerCities(9)">9</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(10)">10</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(11)">11</button>
+						  <button type="button" class="btn btn-lg btn-default"
+						   onClick="powerCities(12)">12</button>
+						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(13)">13</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="powerCities(14)">14</button>
+						  <button type="button" class="btn btn-lg btn-default"  onClick="powerCities(15)">15</button>
+						  <button type="button" class="btn btn-lg btn-default"
+						   onClick="powerCities(16)">16</button>
+						   <button type="button" class="btn btn-lg btn-default"
+						   onClick="powerCities(17)">17</button>
+						 </div>
+
+						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase5collapse')">Done</button>
 				</div>
 			</div>
 	  </div>
 	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h3>Total: <span id="total">50</span></h3>
+		</div>
+	</div>
+
+
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
@@ -108,13 +158,60 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script lang="JavaScript">
-$(function() {
+	var total = 50;
 
-})
+	function showPanel(panel) {
+		$('.collapse').collapse('hide');
+		$('#' + panel).collapse('show');
+	}
 
-function showPanel(panel) {
-	$(panel).collapse('show');
-}
+	function addToTotal(value) {
+		console.log('addToTotal: adding value ' + value)
+		total = parseInt(total) + parseInt(value);
+		$('#total').text(total)
+	}
+
+	function buyPowerPlant() {
+		console.log('buying power plant')
+		$('input#powerplantcost').val(function(index, value) {
+			if (value != NaN) {
+				addToTotal(-parseInt(value));
+			}
+		});
+	}
+
+	function addConnection() {
+		console.log('adding connection')
+		$('input#connectioncost').val(function(index, value) {
+			console.log(index, value)
+			if (value != NaN) {
+				addToTotal(-parseInt(value));
+			}
+		});
+	}
+
+	function powerCities(count) {
+		switch(count) {
+			case 0: addToTotal(10); break;
+			case 1: addToTotal(22); break;
+			case 2: addToTotal(33); break;
+			case 3: addToTotal(44); break;
+			case 4: addToTotal(54); break;
+			case 5: addToTotal(64); break;
+			case 6: addToTotal(73); break;
+			case 7: addToTotal(82); break;
+			case 8: addToTotal(90); break;
+			case 9: addToTotal(98); break;
+			case 10: addToTotal(105); break;
+			case 11: addToTotal(112); break;
+			case 12: addToTotal(118); break;
+			case 13: addToTotal(124); break;
+			case 14: addToTotal(129); break;
+			case 15: addToTotal(134); break;
+			case 16: addToTotal(138); break;
+			case 17: addToTotal(142); break;
+		}
+	}
 
 </script>
 </body>
