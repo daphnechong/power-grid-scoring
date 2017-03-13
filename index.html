@@ -21,11 +21,12 @@
 
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
+
 			<div class="panel panel-default" id="phase2">
 			  <div class="panel-heading" role="tab" id="headingPhase2">
-			    <a class="panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#phase2collapse" aria-expanded="true" aria-controls="phase2collapse"><h3>Phase 2: Auction Power Plants</h3></a>
+			    <a class="panel-title" role="button" onClick="showPanel('phase2body')"><h3>Phase 2: Auction Power Plants</h3></a>
 			  </div>
-			  <div id="phase2collapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPhase2">
+			  <div id="phase2body" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPhase2">
 				  <div class="panel-body">
 				    <div class="form-inline">
 						  <div class="form-group">
@@ -36,7 +37,7 @@
 						    </div>
 						  </div>
 						  <div style="margin-right:0px" class="navbar-right">
-							  <button class="btn btn-lg btn-default" onClick="buyPowerPlant();showPanel('phase3collapse');">Done</button>
+							  <button class="btn btn-lg btn-default" onClick="buyPowerPlant();showPanel('phase3body');">Done</button>
 							</div>
 						</div>
 				  </div>
@@ -46,9 +47,9 @@
 
 			<div class="panel panel-default" id="phase3">
 			  <div class="panel-heading" role="tab" id="headingPhase3">
-			    <a class="collapsed panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#phase3collapse" aria-expanded="false" aria-controls="phase3collapse"><h3>Phase 3: Buy Resources</h3></a>	
+			    <a class="collapsed panel-title" role="button" onClick="showPanel('phase3body')" ><h3>Phase 3: Buy Resources</h3></a>	
 			  </div>
-			  <div id="phase3collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase3">
+			  <div id="phase3body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase3">
 				  <div class="panel-body">
 					  <div class="btn-group" role="group">
 						  <button type="button" class="btn btn-lg btn-default" onClick="addToTotal(-1)">1</button>
@@ -69,7 +70,7 @@
 						  <button type="button" class="btn btn-lg btn-default"  onClick="addToTotal(-16)">16</button>
 						</div>
 
-						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase4collapse')">Done</button>
+						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase4body')">Done</button>
 					</div>
 				</div>
 			</div>
@@ -77,9 +78,11 @@
 
 			<div class="panel panel-default" id="phase4">
 			  <div class="panel-heading" role="tab" id="headingPhase4">
-			    	<a class="collapsed panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#phase4collapse" aria-expanded="false" aria-controls="phase4collapse"><h3>Phase 4: Building</h3></a>
+			    	<a class="collapsed panel-title" role="button" 
+
+			    	onClick="showPanel('phase4body')"><h3>Phase 4: Building</h3></a>
 			  </div>
-			  <div id="phase4collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase4">
+			  <div id="phase4body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase4">
 				  <div class="panel-body">
 						<div class="form-inline">
 						  <div class="form-group">
@@ -98,16 +101,17 @@
 						  <button class="btn btn-lg btn-default" onClick="addConnection();">Add</button>
 						</div>
 
-						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase5collapse')">Done</button>
+						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase5body')">Done</button>
 				</div>
 			</div>
 	  </div>
 
+
 	  <div class="panel panel-default" id="phase5">
 			  <div class="panel-heading" role="tab" id="headingPhase5">
-			    	<a class="collapsed panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#phase5collapse" aria-expanded="false" aria-controls="phase5collapse"><h3>Phase 5: Bureaucracy</h3></a>
+			    	<a class="collapsed panel-title" role="button" onClick="showPanel('phase5body')"><h3>Phase 5: Bureaucracy</h3></a>
 			  </div>
-			  <div id="phase5collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase5">
+			  <div id="phase5body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPhase5">
 				  <div class="panel-body">
  						<div class="btn-group" role="group">
 						  <button type="button" class="btn btn-lg btn-default" onClick="powerCities(0)">0</button>
@@ -138,7 +142,7 @@
 						   onClick="powerCities(17)">17</button>
 						 </div>
 
-						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase5collapse')">Done</button>
+						<button type="button" class="btn btn-lg btn-default navbar-right" style="margin-right:0px" onClick="showPanel('phase2body')">Done</button>
 				</div>
 			</div>
 	  </div>
@@ -166,27 +170,24 @@
 	}
 
 	function addToTotal(value) {
-		console.log('addToTotal: adding value ' + value)
+		console.log('addToTotal: adding value ' + value);
 		total = parseInt(total) + parseInt(value);
 		$('#total').text(total)
 	}
 
 	function buyPowerPlant() {
-		console.log('buying power plant')
 		$('input#powerplantcost').val(function(index, value) {
-			console.log(index + ' ' + value)
-
 			if (value !== '') {
+				console.log('buying power plant');
 				addToTotal(-parseInt(value));
 			}
 		});
 	}
 
 	function addConnection() {
-		console.log('adding connection')
 		$('input#connectioncost').val(function(index, value) {
-			console.log(index + ' ' + value)
 			if (value !== '') {
+				console.log('adding connection');
 				addToTotal(-parseInt(value));
 			}
 		});
