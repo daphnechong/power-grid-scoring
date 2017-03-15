@@ -151,6 +151,7 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<h3>Total: <span id="total">50</span></h3>
+			<button type="button" id="undoLastMoveButton" class="btn btn-lg btn-default navbar-right disabled" style="margin-right:0px" onClick="undoLastMove()">Undo last move</button>
 		</div>
 	</div>
 
@@ -162,7 +163,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script lang="JavaScript">
-	var total = 50;
+	var scores = [50];
 
 	function showPanel(panel) {
 		$('.collapse').collapse('hide');
@@ -171,7 +172,23 @@
 
 	function addToTotal(value) {
 		console.log('addToTotal: adding value ' + value);
-		total = parseInt(total) + parseInt(value);
+		scores.push(parseInt(value));
+		recalculateTotal();
+		$('#undoLastMoveButton').removeClass('disabled');
+	}
+
+	function undoLastMove() {
+		if (scores.length > 1) {
+			scores.pop();
+		} 
+		if (scores.length === 1) {
+			$('#undoLastMoveButton').addClass('disabled');
+		}
+		recalculateTotal();
+	}
+
+	function recalculateTotal() {
+		var total = scores.reduce((acc, current) => acc + current);
 		$('#total').text(total)
 	}
 
@@ -214,6 +231,10 @@
 			case 15: addToTotal(134); break;
 			case 16: addToTotal(138); break;
 			case 17: addToTotal(142); break;
+		}
+
+		function isNumeric(num){
+		    return !isNaN(num)
 		}
 	}
 
